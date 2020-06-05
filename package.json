@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server",
     "watch": "rollup -c rollup.config.js -w",
-    "build": "rollup -c rollup.config.js",
+    "prebuild": "rollup -c rollup.config.js",
+    "build": "terser public/bundle.js --compress --mangle > public/bundle.min.js && rm public/bundle.js && mv public/bundle.min.js public/bundle.js",
     "start": "concurrently npm:server npm:watch",
     "deploy": "gh-pages -d public"
   },
@@ -26,6 +27,7 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "rollup": "^2.13.1",
+    "terser": "^4.7.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {
